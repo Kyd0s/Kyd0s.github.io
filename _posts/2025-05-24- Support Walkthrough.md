@@ -541,4 +541,4 @@ C:\Windows\system32> dir C:\Users\Administrator\Desktop
                1 File(s)             34 bytes
                2 Dir(s)   3,970,781,184 bytes free
 ```
-Don't forget to collect your root.txt! :)
+Don't forget to collect your root.txt!
