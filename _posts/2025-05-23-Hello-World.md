@@ -10,3 +10,4 @@ tags: [htb,thm,pentesting,ethical hacking]  # TAG names should always be lowerca
 
 You will find walkthroughs for retired HTB and THM machines, notes, tips and tricks that will help you get started with ethical hacking.
 This will document my journey in becoming a pentester, will serve as portfolio to demonstrate practical experience and hopefully will help someone out there that puts the time and effort required to learn those skills.
+
