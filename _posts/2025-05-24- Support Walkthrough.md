@@ -113,23 +113,19 @@ Very quickly, we find 3 interesting components:
 * key
 * LdapQuery
 
-![alt text](image.png)
 
 ```enc_password``` contains:
 
-![alt text](image-1.png)
 
 An encoded password
 
 ```key``` contains:
 
-![alt text](image-2.png)
 
 The key to decode the password
 
 ```LdapQuery``` contains:
 
-![alt text](image-3.png)
 
 A valid user, called ldap
 
