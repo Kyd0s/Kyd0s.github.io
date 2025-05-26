@@ -103,23 +103,23 @@ Nmap returns open ports for SSH (Port 22), a web server(HTTP) on port 80 and one
 
 Let's start the enumeration from  ```HTTP (Port 80)``` after adding the machine name to our /etc/hosts/ file. The name is shown on the TryHackMe page after launching the machine, in this case, the name is SilverPlatter3
 # HTTP Enumeration
-```bash
+
 Visiting the website, the only interesting page is http://silverplatter3/#contact.
 This page shows us the name of a user "scr1ptkiddy", as well as something called "Silverpeas"
-```
+
 ![alt text](https://github.com/Kyd0s/Kyd0s.github.io/blob/main/assets/SilverPlatterContact1.png?raw=true)
 ![alt text](https://github.com/Kyd0s/Kyd0s.github.io/blob/main/assets/SilverPlatterContact2.png?raw=true)
 
-So let's do some OSINT (Open Source Intelligence) on Silverpeas
+So let's do some ```OSINT``` (Open Source Intelligence) on Silverpeas
 
 # Silverpeas OSINT Findings
 
 We find the official website of Silverpeas, and the description of the application is:
-```bash 
-Use Silverpeas to build an Intranet or Extranet and feed web 2.0 sites optimizing sharing and performance.
+
+```Use Silverpeas to build an Intranet or Extranet and feed web 2.0 sites optimizing sharing and performance.
 Based on it's collaborative bus, Silverpeas is used to share documents (EDM for Electronic Documentation Management), to optimize project managment, content management and knowledge and skills management.
-Silverpeas improves and encourages best practices and helps the creation of social networks, thanks to improved workflow and information management.
-```
+Silverpeas improves and encourages best practices and helps the creation of social networks, thanks to improved workflow and information management.```
+
 We find the instructions for installation and, at the end of the page, some interesting information:
 ![alt text](https://github.com/Kyd0s/Kyd0s.github.io/blob/main/assets/Silverpeas1.png?raw=true)
 So we attempt the login at http://silverplatter3:8080/silverpeas/, as our host does not have port 8000 open but 8080 is.
@@ -166,7 +166,8 @@ Login=scr1ptkiddy&DomainId=0
 ```
 The response we receive should look like:
 
-```HTTP/1.1 302 Found
+```bash
+HTTP/1.1 302 Found
 Set-Cookie: JSESSIONID=22D2G3E6r8plc-G5ybnP1s58gf5AXfX-p53cwMn1.ebabc79c6d2a; path=/silverpeas; HttpOnly
 Set-Cookie: defaultDomain=0; path=/; Max-Age=31536000; Expires=Tue, 26-May-2026 15:18:20 GMT
 Set-Cookie: svpLogin=scr1ptkiddy; path=/; Max-Age=31536000; Expires=Tue, 26-May-2026 15:18:20 GMT
@@ -182,7 +183,7 @@ X-Content-Type-Options: nosniff
 Content-Length: 0
 ```
 The response contains a ```JSESSIONID``` cookie and a ```Location```.
-Adding the cookie to our browser using Cookie-Editor extension, allows us to navigate to the ```Location``` http://silverplatter3:8080/silverpeas/Main//look/jsp/MainFrame.jsp, and we are in!
+Adding the cookie to our browser using Cookie-Editor extension, allows us to navigate to the ```Location``` ```http://silverplatter3:8080/silverpeas/Main//look/jsp/MainFrame.jsp```, and we are in!
 ![alt text](https://github.com/Kyd0s/Kyd0s.github.io/blob/main/assets/SilverPlatterLogin.png?raw=true)
 
 There is an unread notification, and by opening it we see that a user called ```Manager Manager``` has send a message to our user ```scr1ptkiddy```, mentioning a user called ```tyler```
@@ -199,7 +200,7 @@ We can try the same exploit as before, with a different user, for example ```Man
 
 ![alt text](https://github.com/Kyd0s/Kyd0s.github.io/blob/main/assets/BurpSuite2.png?raw=true)
 
-Repeating the steps from the first exploit, we change the ```JSESSIONID``` cookie in our browser and navigate again to http://silverplatter3:8080/silverpeas/look/jsp/MainFrame.jsp
+Repeating the steps from the first exploit, we change the ```JSESSIONID``` cookie in our browser and navigate again to ```http://silverplatter3:8080/silverpeas/look/jsp/MainFrame.jsp```
 We are presented with the same homepage for the first user, but this time we are logged in as ```Manager Manager```
 Opening the unread messages, we find a message from ```Administrator``` that contains what looks like ```SSH``` credentials for a user called ```tim```
 
@@ -272,7 +273,7 @@ The output is pretty long, but analyzing with some patience, we find an interest
 ```bash
 /var/log/auth.log.2:Dec 13 15:40:33 silver-platter sudo:    tyler : TTY=tty1 ; PWD=/ ; USER=root ; COMMAND=/usr/bin/docker run --name postgresql -d -e POSTGRES_PASSWORD=_Zd******** -v postgresql-data:/var/lib/postgresql/data postgres:12.3
 ```
-There is plaintext password save in the logs, the line mentions the user ```tyler``` which we know is out target, so we attempt to pivot to ```tyler``` with the new credentials.
+There is plaintext password saved in the logs, the line mentions the user ```tyler``` which we know is our target, so we attempt to pivot to ```tyler``` with the new credentials.
 
 ```bash
 tim@silver-platter:~$ su tyler
