@@ -59,7 +59,7 @@ Nmap returns the name of the fully qualified domain name ```support.htb```, as w
 A few ports are open, but I like to start my domain controllers enumeration from ```SMB```
 # SMB Enumeration
 ```bash
-ssmbclient -L \\\\support.htb\\ 
+smbclient -L \\\\support.htb\\ 
 Password for [WORKGROUP\kali]:
 
         Sharename       Type      Comment
@@ -201,7 +201,7 @@ SMB         10.10.11.174    445    DC               [*] Enumerated 20 local user
 
 In CTFs as in the real world, password reuse is very common, so we create a ```users.txt``` file and we use netexec to attempt password spraying, unfortunately without success.
 
-Since the user is called ldap, and the executable is executing a ldap query with the password we found, we can try enumerating ldap to see if we find any hiddin passwords or clues.
+Since the user is called ldap, and the executable is executing a ldap query with the password we found, we can try enumerating ldap to see if we find any hidden passwords or clues.
 ```bash
 ldapsearch -x -H ldap://support.htb -D 'ldap@support.htb' -w 'nvEfEK16^1aM4$e7********************' -b 'dc=support,dc=htb' > ldapsearch.txt
 ```
