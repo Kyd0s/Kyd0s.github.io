@@ -4,8 +4,8 @@ icon: fas fa-info-circle
 order: 4
 ---
 ---
-# WHOAMI
-![alt text](image.png)
+
+![alt text](https://github.com/Kyd0s/Kyd0s.github.io/blob/main/assets/NightDay.jpg?raw=true)
 
 ---
 I’m a Technical Specialist working full-time in a large virtualized environment. Think incident response, change management, and keeping chaos at bay across hundreds of systems.
