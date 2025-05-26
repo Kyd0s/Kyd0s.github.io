@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Support
+title: Silver Platter
 date: 2025-05-26 10:00:00 +0100
 categories: [Walkthroughs]
 tags: [tryhackme, linux, CVE, privesc]
