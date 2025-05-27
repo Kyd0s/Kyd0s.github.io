@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Administrator
-date: 2025-05-27
+date: 2025-05-27 10:00:00 +0100
 categories: [Walkthroughs]
 tags: [htb, windows, active directory, privesc]
 ---
