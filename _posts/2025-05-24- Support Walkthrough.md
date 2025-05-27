@@ -17,7 +17,7 @@ tags: [htb, windows, active directory, privesc]
 | Release Date | 30 Jul 2022        |
 
 # Highlights
-SMB enumeration, Python Scripting, dnSpy, Rubeus, Bloodhound
+SMB enumeration, Python Scripting, dnSpy, Rubeus, Bloodhound, Windows Privilege Escalation
 
 ---
 

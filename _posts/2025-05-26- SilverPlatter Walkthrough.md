@@ -17,7 +17,7 @@ tags: [tryhackme, linux, CVE, privesc]
 | Release Date | 10 January 2025        |
 
 # Highlights
-HTTP enumeration, OSINT, Burp Suite, XSS, Linux Privesc
+HTTP enumeration, OSINT, Burp Suite, XSS, Linux Privilege Escalation
 
 ---
 
