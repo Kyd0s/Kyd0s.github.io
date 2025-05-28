@@ -7,8 +7,6 @@ tags: [htb, windows, active directory, privesc]
 ---
 ![alt text](https://labs.hackthebox.com/storage/avatars/9d232b1558b7543c7cb85f2774687363.png)
 
-[https://app.hackthebox.com/machines/634](https://app.hackthebox.com/machines/634)
-
 ---
 
 | Description    |  Info |
