@@ -15,6 +15,7 @@ tags: [htb, windows, active directory, privesc]
 | OS | Windows        |
 | Difficulty | Easy        |
 | Release Date | 30 Jul 2022        |
+| Link to machine | [Support](https://app.hackthebox.com/machines/484)        |
 
 # Highlights
 SMB enumeration, Python Scripting, dnSpy, Rubeus, Bloodhound, Windows Privilege Escalation

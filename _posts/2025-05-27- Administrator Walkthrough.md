@@ -15,6 +15,7 @@ tags: [htb, windows, active directory, privesc]
 | OS | Windows        |
 | Difficulty | Medium        |
 | Release Date | 09 Nov 2024        |
+| Link to machine | [Administrator](https://app.hackthebox.com/machines/634)        |
 
 # Highlights
 Password Spraying, OSINT, Bloodhound, Kerberoasting, Hashcat, Windows Privilege Escalation

@@ -15,6 +15,7 @@ tags: [tryhackme, linux, CVE, privesc]
 | OS | Linux        |
 | Difficulty | Easy        |
 | Release Date | 10 January 2025        |
+| Link to machine | [SilverPlatter](https://tryhackme.com/room/silverplatter)        |
 
 # Highlights
 HTTP enumeration, OSINT, Burp Suite, XSS, Linux Privilege Escalation
