@@ -7,6 +7,8 @@ tags: [tryhackme, linux, CVE, privesc]
 ---
 ![alt text](https://github.com/Kyd0s/Kyd0s.github.io/blob/main/assets/Silver%20Platter%20logo%20(Custom).png?raw=true)
 
+[https://tryhackme.com/room/silverplatter](https://tryhackme.com/room/silverplatter)
+
 ---
 
 | Description    |  Info |
