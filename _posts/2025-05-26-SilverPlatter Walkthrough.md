@@ -274,7 +274,7 @@ The output is pretty long, but analyzing with some patience, we find an interest
 ```bash
 /var/log/auth.log.2:Dec 13 15:40:33 silver-platter sudo:    tyler : TTY=tty1 ; PWD=/ ; USER=root ; COMMAND=/usr/bin/docker run --name postgresql -d -e POSTGRES_PASSWORD=_Zd******** -v postgresql-data:/var/lib/postgresql/data postgres:12.3
 ```
-There is plaintext password saved in the logs, the line mentions the user ```tyler``` which we know is our target, so we attempt to pivot to ```tyler``` with the new credentials.
+There is a plaintext password saved in the logs, the line mentions the user ```tyler``` which we know is our target, so we attempt to pivot to ```tyler``` with the new credentials.
 
 ```bash
 tim@silver-platter:~$ su tyler
