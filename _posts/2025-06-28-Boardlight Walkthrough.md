@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Boardlight
-date: 2025-06-28 10:00:00 +0100
+date: 2025-06-27 10:00:00 +0100
 categories: [Walkthroughs]
 tags: [hackthebox, linux, web-app,php injection, linux privesc]
 ---
